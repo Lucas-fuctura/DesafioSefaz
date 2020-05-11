@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body style="background-image: url('https://images4.alphacoders.com/810/thumb-1920-810873.jpg');
+		background-attachment: fixed; background-size: 100%; background-repeat: no-repeat;">
+	<h:form>
+		<h1 style="	background-color: white; padding-left:40%;
+		opacity: 0.7;	border-radius: 10px;">Biblioteca Sefaz
+			<p:commandLink value="Logout" onclick="PF('logout').show()" style="padding-left:45%; font-size: 18px">
+			<p:confirm header="Sair" message="Você Tem Certeza?" style="text-align: center"/> 
+			</p:commandLink>
+		</h1>
+		
+		<p:confirmDialog global="true">     	
+	        <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" action="#{LivroBean.sair}" update="@form"/>
+	        <p:commandButton value="Não" styleClass="ui-confirmdialog-no"/>
+	   	 </p:confirmDialog> 
+
+		<p:inputText placeholder="Título do Livro" value="#{LivroBean.txtpesquisa}" style="width:82%" />
+		<p:commandButton value="Pesquisar" onclick="PF('minhaPesquisa').show()"
+			style="width:15%; margin-left: 25px" />
+			
+		<p:commandLink value="Adicionar novo livro" onclick="PF('novoLivro').show()" style="background-color: white" />
+
+		<p:panelGrid columns="4" style="margin: 0 auto; margin-top: 10px">
+			<p:outputLabel value="Título" style="padding: 78px" />
+			<p:outputLabel value="Genêro" style="padding: 78px" />
+			<p:outputLabel value="Autor(es)" style="padding: 78px" />
+			<p:outputLabel value="Editor(es)" style="padding: 78px" />
+		</p:panelGrid>
+		<p:dataTable var="liv">
+			<p:column>
+				<h:outputLabel value="#{liv.titulo}"/>
+			</p:column>
+		</p:dataTable>
+		<p/>
+		<p:commandLink value="Editar Livro" onclick="PF('editarLivro').show()" style="background-color: white;width: 40%; margin-left: 90%"/>
+		
+		<p:dialog header="Novo Livro" widgetVar="novoLivro" modal="true"
+			visible="false">
+			<p:panelGrid columns="2" style="width: 100%">
+				<p:outputLabel value="Título: "/>
+				<p:inputText value="#{LivroBean.livro.titulo}" style="width: 100%"/>
+				<p:outputLabel value="Autor(es): "/>
+				<p:inputText value="#{LivroBean.livro.autor}" style="width: 100%"/>				
+				<p:outputLabel value="Genêro: "/>
+				<p:inputText value="#{LivroBean.livro.genero}" style="width: 100%"/>
+				<p:outputLabel value="Editor(es): "/>
+				<p:inputText value="#{LivroBean.livro.editor}" style="width: 100%"/>
+			</p:panelGrid>
+			<p:commandButton value="Salvar Livro" action="#{LivroBean.novoLivro}" update="@form" style="Margin-top:5px; margin-left: 290px"/>
+		</p:dialog>
+		
+		<p:dialog header="Editar Livro" widgetVar="editarLivro" modal="true" visible="false">
+			<p:panelGrid columns ="2" style="width: 100%">
+				<p:outputLabel value="Título: "/>
+				<p:inputText style="width: 100%"/>
+				<p:outputLabel value="Autor(es): "/>
+				<p:inputText style="width: 100%"/>
+				<p:outputLabel value="Gênero: "/>
+				<p:inputText style="width: 100%"/>
+				<p:outputLabel value="Editor(es): "/>
+				<p:inputText style="width: 100%"/>
+			</p:panelGrid>
+			<p:commandButton value="Salvar" style="Margin-top:5px; margin-left: 290px"/>
+		</p:dialog>
+		
+		<p:dialog header="Minha Pesquisa" widgetVar="minhaPesquisa" modal="true" visible="false">
+				<p:outputLabel value="#{LivroBean.pesquisa}"/>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>

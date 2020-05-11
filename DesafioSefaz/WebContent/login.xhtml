@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body style="background-image: url('https://images4.alphacoders.com/810/thumb-1920-810873.jpg');
+		background-attachment: fixed; background-size: 100%; background-repeat: no-repeat;">
+	<h:form>
+		<h1 style="	background-color: white; text-align: center;
+		opacity: 0.7;	border-radius: 10px;">Biblioteca Sefaz</h1>
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+		<h:panelGrid style="margin-left: auto; margin-top: 5px; background-color: white;border-radius: 8px;">
+			<p:panelGrid>
+			<p:outputLabel value="Email: "/>
+			<p:inputText value="#{LoginBean.txtEmail}" update="@form" style="width: 150px"/>
+			<p:outputLabel value="Senha: " style="margin-left: 3px"/>
+			<p:password value="#{LoginBean.txtSenha}" update="@form" style="margin-right: 3px; width: 150px"/>
+			<p:commandButton value="Entrar" action="#{LoginBean.entrar}" update="@form" style="margin-right: 3px"/>
+			</p:panelGrid>
+			<p:commandLink value="Criar Conta" onclick="PF('criarUsuario').show()" style="font-color: blue; font-size: 15px"/>
+		</h:panelGrid>
+		
+
+		
+		<p:dialog header="Criar Usuário" widgetVar="criarUsuario"  modal="true" visible="false">
+			<p:panelGrid columns="2" style="width:100%">
+				<p:outputLabel value="Nome: "/>
+				<p:inputText value="#{LoginBean.usuario.nome}" style="width:100%"/>
+				<p:outputLabel value="E-mail: "/>
+				<p:inputText value="#{LoginBean.usuario.email}" style="width:100%"/>
+				<p:outputLabel value="Telefone: "/>
+				<p:inputText value="#{LoginBean.usuario.telefone}" style="width:100%"/>
+				<p:outputLabel value="Senha: "/>
+				<p:password value="#{LoginBean.usuario.senha}" style="width:100%"/>
+			</p:panelGrid>
+			<p:commandButton value="Salvar" actionListener="#{LoginBean.criarUsuario}"
+			  update="@form" style="Margin-top:5px; margin-left: 290px"/>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
